@@ -1,0 +1,266 @@
+<title>Cake Quote Kit na Pinterestu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+<style>
+:root{
+  --bg:#F7F4F9; --panel:#FFFFFF; --panel-2:#EFEAF3; --line:#E1D9E7; --line-strong:#C9BFD1;
+  --ink:#23192A; --ink-2:#5E5366; --muted:#82768B;
+  --accent:#B5173F; --accent-soft:#F8E3EA;
+  --good:#2E7D5B; --good-soft:#E1F1EA; --warn:#9A5B00; --warn-soft:#F7ECD8; --bad:#9C2A2A; --bad-soft:#F6E1E1;
+  /* brand of the cake site, used only inside pin mockups (single-look, fixed) */
+  --pin-green:#173e35; --pin-cream:#F4F1E6; --pin-sage:#DCE5D3; --pin-rust:#A33B2A; --pin-gold:#D9A441;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B151F; --panel:#251E2A; --panel-2:#2E2634; --line:#3B3141; --line-strong:#4E4256;
+    --ink:#F2ECF4; --ink-2:#C5B9CB; --muted:#9A8DA2;
+    --accent:#F26F8E; --accent-soft:#3D2230;
+    --good:#7BCBA4; --good-soft:#1F3A2E; --warn:#E5B060; --warn-soft:#3D2F17; --bad:#F08A8A; --bad-soft:#452222;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1B151F; --panel:#251E2A; --panel-2:#2E2634; --line:#3B3141; --line-strong:#4E4256;
+  --ink:#F2ECF4; --ink-2:#C5B9CB; --muted:#9A8DA2;
+  --accent:#F26F8E; --accent-soft:#3D2230;
+  --good:#7BCBA4; --good-soft:#1F3A2E; --warn:#E5B060; --warn-soft:#3D2F17; --bad:#F08A8A; --bad-soft:#452222;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,4.5vw,3.1rem);letter-spacing:-0.01em}
+h2{font-size:1.55rem}
+h3{font-size:1.1rem}
+p{margin:0}
+.mono,.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px;display:grid;gap:56px}
+header{display:grid;gap:18px;max-width:78ch}
+header .lede{font-size:1.2rem;color:var(--ink-2)}
+.prose{max-width:70ch;display:grid;gap:14px}
+.prose p,.prose li{color:var(--ink-2)}
+.prose strong{color:var(--ink)}
+section{display:grid;gap:22px}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:22px 24px;border-left:4px solid var(--accent);background:var(--panel);border-radius:0 8px 8px 0;align-items:start}
+.verdict .big{font-family:"Young Serif",Georgia,serif;font-size:2.4rem;line-height:1;color:var(--accent);white-space:nowrap}
+.verdict .big small{display:block;font-family:"Source Sans 3",sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.verdict p{color:var(--ink-2)}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:900px){.grid-3{grid-template-columns:1fr}}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:700px){.grid-2{grid-template-columns:1fr}}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;display:grid;gap:8px;align-content:start}
+.tile .label{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tile .value{font-size:1.5rem;line-height:1.1}
+.tile p,.tile li{color:var(--ink-2);font-size:.97rem}
+.tile ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--panel-2)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.78rem;font-weight:600}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+/* pin mockups: fixed brand look, intentionally the same in both themes */
+.pinwrap{display:grid;gap:14px}
+.pin{aspect-ratio:2/3;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 10px 30px rgba(20,10,30,.18);font-family:"Fraunces",Georgia,serif;color:var(--pin-green);display:flex;flex-direction:column}
+.pin *{box-sizing:border-box}
+.pin .brand{position:absolute;left:0;right:0;bottom:0;padding:14px 22px;font-family:"Source Sans 3",sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pin .cta{font-family:"Source Sans 3",sans-serif;font-size:15px;font-weight:600;letter-spacing:.02em;display:inline-block;padding:11px 18px;border-radius:999px;text-transform:none;white-space:nowrap}
+/* pin A: cream, formula */
+.pin.a{background:var(--pin-cream)}
+.pin.a .top{padding:34px 28px 0}
+.pin.a .kicker{font-family:"Source Sans 3",sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--pin-rust)}
+.pin.a h4{font-size:clamp(26px,3.2vw,40px);line-height:1.02;margin:10px 0 0;font-weight:700;font-variation-settings:"opsz" 144;letter-spacing:-.01em}
+.pin.a .bars{margin:26px 28px 0;display:grid;gap:10px;font-family:"Source Sans 3",sans-serif;font-size:14px}
+.pin.a .bar{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center}
+.pin.a .bar i{display:block;height:12px;border-radius:6px;background:var(--pin-green);grid-column:1/-1}
+.pin.a .bar span:last-child{font-family:"IBM Plex Mono",monospace;font-size:13px}
+.pin.a .verdict-line{margin:22px 28px 0;padding:14px 16px;background:var(--pin-green);color:var(--pin-cream);border-radius:10px;font-family:"Source Sans 3",sans-serif;font-size:15px;line-height:1.35}
+.pin.a .verdict-line b{font-family:"Fraunces",serif;font-size:24px;display:block;font-weight:700}
+.pin.a .brand{color:var(--pin-green)}
+.pin.a .cta{background:var(--pin-rust);color:#fff}
+/* pin B: green, big number */
+.pin.b{background:var(--pin-green);color:var(--pin-cream)}
+.pin.b .top{padding:34px 28px 0}
+.pin.b .kicker{font-family:"Source Sans 3",sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--pin-gold)}
+.pin.b .price{margin-top:22px;display:grid;gap:4px}
+.pin.b .price .was{font-size:clamp(34px,4vw,54px);font-weight:600;text-decoration:line-through;text-decoration-color:var(--pin-rust);text-decoration-thickness:4px;opacity:.9}
+.pin.b .price .is{font-size:clamp(56px,7vw,92px);font-weight:700;line-height:.95;color:var(--pin-gold);font-variation-settings:"opsz" 144;letter-spacing:-.02em}
+.pin.b .price small{font-family:"Source Sans 3",sans-serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.pin.b h4{font-size:clamp(20px,2.4vw,28px);font-weight:600;margin:22px 28px 0;line-height:1.15}
+.pin.b .brand{color:var(--pin-cream)}
+.pin.b .cta{background:var(--pin-cream);color:var(--pin-green)}
+/* pin C: sage, checklist */
+.pin.c{background:var(--pin-sage)}
+.pin.c .top{padding:34px 28px 0}
+.pin.c .kicker{font-family:"Source Sans 3",sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--pin-green)}
+.pin.c h4{font-size:clamp(26px,3.2vw,40px);line-height:1.02;margin:10px 0 0;font-weight:700;letter-spacing:-.01em}
+.pin.c ul{list-style:none;margin:24px 28px 0;padding:0;display:grid;gap:10px;font-family:"Source Sans 3",sans-serif;font-size:15.5px;line-height:1.3}
+.pin.c li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.pin.c li::before{content:"";width:18px;height:18px;border:2px solid var(--pin-green);border-radius:4px;margin-top:1px}
+.pin.c li.done::before{background:var(--pin-green);box-shadow:inset 0 0 0 3px var(--pin-sage)}
+.pin.c .brand{color:var(--pin-green)}
+.pin.c .cta{background:var(--pin-green);color:var(--pin-cream)}
+.pincopy{display:grid;gap:8px;font-size:.93rem}
+.pincopy .t{font-weight:600}
+.pincopy .d{color:var(--ink-2)}
+.pincopy .k{color:var(--muted);font-size:.85rem}
+ol.steps{margin:0;padding-left:1.3em;display:grid;gap:10px;color:var(--ink-2);max-width:72ch}
+ol.steps strong{color:var(--ink)}
+footer{color:var(--muted);font-size:.88rem;max-width:78ch}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Návrh kampaně · 9. září 2026</span>
+  <h1>Cake Quote Kit na Pinterestu</h1>
+  <p class="lede">Testovací kampaň, která vede pekařky na bezplatnou kalkulačku a sbírá e-maily. Ne na produkt za 6,90 $. Cíl testu je zjistit dvě čísla: cenu kliku z Pinterestu a podíl návštěvníků, kteří nechají e-mail.</p>
+</header>
+
+<div class="verdict">
+  <div class="big">105 $<small>rozpočet testu</small></div>
+  <div class="prose">
+    <p><strong>5 $ denně, 21 dní, tři piny, jeden cíl: e-mail.</strong> Pinterest je jediný placený kanál, kde se cena kliku pro tuto niku pohybuje kolem 0,10 až 0,30 $, tedy blízko hodnoty kliku 0,17 $ z modelu. Piny navíc žijí dál organicky: každé uložení z placeného provozu přináší dosah zdarma, což u Googlu neexistuje.</p>
+    <p>Test uspěje, když klik vyjde pod 0,20 $ a aspoň čtvrtina návštěvníků zadá e-mail. Pak se škáluje na 15 $ denně a čeká se na první prodeje z e-mailové sekvence. Když ne, vypíná se a zůstávají jen organické piny.</p>
+  </div>
+</div>
+
+<section>
+  <span class="eyebrow">Proč Pinterest</span>
+  <h2>Publikum, které si plánuje a ukládá</h2>
+  <div class="grid-3">
+    <div class="tile"><span class="label">Kdo tam je</span><span class="value">domácí pekařky</span><p>Pinterest je vizuální plánovač. Dorty, zdobení a „cake business“ nástěnky patří k nejsilnějším tématům. Uživatelka, která si připíná pin o cenách, řeší svoji nabídku právě teď.</p></div>
+    <div class="tile"><span class="label">Co to stojí</span><span class="value num">0,10 – 0,30 $</span><p>Typická cena kliku u kampaní na provoz v úzkých zájmových segmentech v USA. Odhad, ne měření; test ho nahradí skutečným číslem během prvního týdne.</p></div>
+    <div class="tile"><span class="label">Co Google nemá</span><span class="value">druhý život pinu</span><p>Placený pin získává uložení a ta mu dávají organický dosah měsíce po skončení kampaně. Piny o cenách dortů z roku 2022 se dodnes zobrazují ve výsledcích.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Kreativa</span>
+  <h2>Tři piny, tři úhly</h2>
+  <div class="prose"><p>Formát 1000 × 1500 px (2:3). Text v pinu je krátký, čitelný z mobilu a bez ceny produktu. Každý pin vede na kalkulačku s UTM parametrem, ne na Payhip. Vizuály níže jsou návrh v barvách webu; finální export vznikne z těchto rozvržení.</p></div>
+  <div class="grid-3">
+    <div class="pinwrap">
+      <div class="pin a" role="img" aria-label="Pin A: Are you underpricing your cakes? Cost bars and verdict.">
+        <div class="top"><span class="kicker">Free calculator</span><h4>Are you under&shy;pricing your cakes?</h4></div>
+        <div class="bars">
+          <div class="bar"><span>Ingredients</span><span>$18</span><i style="width:26%"></i></div>
+          <div class="bar"><span>Your time · 3 h</span><span>$45</span><i style="width:64%"></i></div>
+          <div class="bar"><span>Boxes, board, fees</span><span>$8.25</span><i style="width:12%"></i></div>
+        </div>
+        <div class="verdict-line">You charged $65.<b>You made −$6.25</b></div>
+        <div class="brand"><span>cakequotekit.app</span><span class="cta">Check my price →</span></div>
+      </div>
+      <div class="pincopy">
+        <div class="t">Pin A · „Underpricing“</div>
+        <div class="d"><strong>Titulek:</strong> Are you underpricing your cakes? Free 1-minute cake pricing calculator</div>
+        <div class="d"><strong>Popis:</strong> Enter your ingredients, hours and fees. See your real cost, break-even price and the price that pays you a margin. Free cake pricing calculator for home bakers and cake business owners. No spreadsheet needed.</div>
+        <div class="k">Hook: ztráta, kterou pekařka nevidí. Nejsilnější varianta na studené publikum.</div>
+      </div>
+    </div>
+    <div class="pinwrap">
+      <div class="pin b" role="img" aria-label="Pin B: The $65 cake that should cost $96.">
+        <div class="top"><span class="kicker">Real example</span>
+          <div class="price"><span class="was">$65</span><span class="is">$96</span><small>what this cake should cost</small></div>
+        </div>
+        <h4>Same cake. Same costs. 25% margin instead of a loss.</h4>
+        <div class="brand"><span>cakequotekit.app</span><span class="cta">Price my cake →</span></div>
+      </div>
+      <div class="pincopy">
+        <div class="t">Pin B · „$65 → $96“</div>
+        <div class="d"><strong>Titulek:</strong> The $65 cake that should cost $96. How to price a cake for profit</div>
+        <div class="d"><strong>Popis:</strong> A 3-hour custom cake with $18 of ingredients sold for $65 loses money once you count your time and payment fees. The free calculator shows the price that covers everything and pays you. Try it with your own numbers.</div>
+        <div class="k">Hook: konkrétní číslo. Čísla jsou z výchozího příkladu kalkulačky, takže pin a stránka souhlasí.</div>
+      </div>
+    </div>
+    <div class="pinwrap">
+      <div class="pin c" role="img" aria-label="Pin C: Before you send that cake quote. Checklist.">
+        <div class="top"><span class="kicker">Cake business</span><h4>Before you send that cake quote</h4></div>
+        <ul>
+          <li class="done">Every ingredient, not the whole pack</li>
+          <li class="done">Shopping, baking, decorating and messages</li>
+          <li class="done">Boxes, boards, delivery, utilities</li>
+          <li>Card fees: % and fixed</li>
+          <li>Margin, not markup</li>
+        </ul>
+        <div class="brand"><span>cakequotekit.app</span><span class="cta">Checklist →</span></div>
+      </div>
+      <div class="pincopy">
+        <div class="t">Pin C · „Checklist“</div>
+        <div class="d"><strong>Titulek:</strong> Cake pricing checklist: 5 things to count before you quote a cake</div>
+        <div class="d"><strong>Popis:</strong> Printable checklist for home bakers. Count ingredients, time, overheads and card fees, then check your price with the free cake pricing calculator. Save it for your next custom cake order.</div>
+        <div class="k">Hook: uložitelný obsah. Nejvíc uložení, méně kliků; slouží organickému dosahu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Nastavení</span>
+  <h2>Struktura kampaně</h2>
+  <div class="grid-2">
+    <div class="tile"><span class="label">Kampaň</span><ul>
+      <li><strong>Cíl:</strong> Consideration (provoz), platba za klik. Cíl Conversions až po 50+ leadech, dřív nemá algoritmus z čeho učit.</li>
+      <li><strong>Rozpočet:</strong> 5 $ denně, 21 dní. Bez data konce, vypíná se ručně podle hranic níže.</li>
+      <li><strong>Bidding:</strong> první týden automaticky, pak strop 0,20 $ za klik.</li>
+      <li><strong>Umístění:</strong> vyhledávání i procházení. Vyhledávání má silnější záměr, procházení levnější kliky.</li>
+    </ul></div>
+    <div class="tile"><span class="label">Sestava 1 · Klíčová slova</span><ul>
+      <li>cake pricing, cake pricing guide, cake pricing chart, how to price a cake, how much to charge for a cake</li>
+      <li>cake business, home bakery business, cake business tips, starting a cake business, bakery pricing</li>
+      <li>cake order form, cake quote, custom cake prices, wedding cake pricing</li>
+      <li>Vyloučit: cake recipe, cake decorating tutorial, birthday cake ideas (zákazníci, ne pekařky)</li>
+    </ul></div>
+    <div class="tile"><span class="label">Sestava 2 · Zájmy</span><ul>
+      <li>Food and drinks → Baking → Cake decorating</li>
+      <li>Finance → Small business</li>
+      <li>Event planning → Wedding cakes</li>
+      <li>Stejné tři piny; sestava slouží k porovnání ceny kliku se sestavou na klíčová slova.</li>
+    </ul></div>
+    <div class="tile"><span class="label">Publikum</span><ul>
+      <li><strong>Země:</strong> USA, Kanada, Velká Británie, Austrálie. USA zvlášť sledovat, tvoří 79 % poptávky.</li>
+      <li><strong>Jazyk:</strong> angličtina. <strong>Věk:</strong> 18+. <strong>Pohlaví:</strong> vše.</li>
+      <li><strong>Zařízení:</strong> vše. Kalkulačka je mobilní a 80 % Pinterestu je mobil.</li>
+      <li><strong>Retargeting</strong> od 2. týdne: návštěvníci kalkulačky bez e-mailu, pin B.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Měření</span>
+  <h2>Co musí být hotové před prvním dolarem</h2>
+  <ol class="steps">
+    <li><strong>Pinterest Tag na webu.</strong> Základní kód do <span class="mono">index.html</span>, událost <span class="mono">pagevisit</span> automaticky, událost <span class="mono">lead</span> po úspěšném odeslání e-mailu v kalkulačce a vlastní událost <span class="mono">buy_click</span> na tlačítko do Payhipu. Nákup na Payhipu tag nezachytí.</li>
+    <li><strong>UTM na každý pin.</strong> <span class="mono">?utm_source=pinterest&amp;utm_medium=paid&amp;utm_campaign=calc-test&amp;utm_content=pinA</span>. Stejné parametry projdou až do odkazu na Payhip, aby šlo prodeje spárovat v Payhip reportu podle referreru.</li>
+    <li><strong>GA4 nebo Plausible</strong> na webu, aby byl vidět poměr návštěva → e-mail podle pinu a země. Bez toho test neřekne, který pin funguje.</li>
+    <li><strong>Ověřená doména</strong> v Pinterest Business účtu (meta tag nebo HTML soubor). Bez ověření nelze spustit reklamy na vlastní web a piny nemají logo a jméno.</li>
+    <li><strong>Deset organických pinů</strong> na nástěnku „Cake pricing“ před spuštěním. Placený pin z prázdného profilu působí jako spam a Pinterest ho hůř distribuuje.</li>
+  </ol>
+</section>
+
+<section>
+  <span class="eyebrow">Vyhodnocení</span>
+  <h2>Kdy pokračovat a kdy vypnout</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Metrika</th><th class="num">Očekávání za 21 dní</th><th class="num">Pokračovat</th><th class="num">Vypnout</th></tr></thead>
+    <tbody>
+      <tr><td>Cena kliku</td><td class="num">0,15 – 0,30 $</td><td class="num"><span class="pill good">≤ 0,20 $</span></td><td class="num"><span class="pill bad">&gt; 0,35 $</span></td></tr>
+      <tr><td>Kliky</td><td class="num">350 – 700</td><td class="num">–</td><td class="num">–</td></tr>
+      <tr><td>Návštěva → e-mail</td><td class="num">15 – 30 %</td><td class="num"><span class="pill good">≥ 25 %</span></td><td class="num"><span class="pill bad">&lt; 12 %</span></td></tr>
+      <tr><td>Cena za e-mail</td><td class="num">0,60 – 1,50 $</td><td class="num"><span class="pill good">≤ 0,80 $</span></td><td class="num"><span class="pill bad">&gt; 2 $</span></td></tr>
+      <tr><td>Uložení pinu / 100 zobrazení</td><td class="num">0,5 – 2</td><td class="num"><span class="pill good">≥ 1</span></td><td class="num">–</td></tr>
+      <tr><td>Prodeje z e-mailů</td><td class="num">3 – 8 z ~130 e-mailů</td><td class="num"><span class="pill warn">měřit až po 30 dnech</span></td><td class="num">–</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose">
+    <p><strong>Proč e-mail a ne prodej.</strong> Za 105 $ vznikne řádově 130 kontaktů a jednotky prodejů. To je málo na statistiku o prodeji, ale dost na to, aby bylo jasné, kolik stojí kontakt. Cena za e-mail pod 0,80 $ znamená, že s dražším balíčkem (od 29 $) nebo jakýmkoli dalším produktem se kanál zaplatí. Nad 2 $ se nezaplatí ani tak.</p>
+    <p><strong>Co s výsledkem.</strong> Vítězný pin dostane 15 $ denně a variantu pro svatební sezónu (leden až březen, kdy vrcholí hledání „wedding cake prices“). Poražené piny zůstanou jako organické. Retargeting na návštěvníky bez e-mailu poběží trvale za 1 až 2 $ denně, protože je to nejlevnější klik, jaký kanál nabídne.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Ceny kliku a míry uložení jsou odhady pro úzké zájmové segmenty v USA, ne měření; test je nahradí skutečnými čísly. Hodnota kliku 0,17 $ a break-even vychází z modelu na stránce Cake Quote Kit v Google Ads. Čísla v pinech odpovídají výchozímu příkladu kalkulačky: 18 $ suroviny, 3 h × 15 $, 6 $ režie, 3 % + 0,30 $ poplatky, 25 % marže, cena 65 $, cílová cena 96,25 $.</p>
+</footer>
+</div>

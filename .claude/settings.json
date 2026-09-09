@@ -37,7 +37,22 @@
       "Bash(node scripts/ads-keyword-import.mjs /tmp/claude-501/US.csv)",
       "Bash(node scripts/ads-keyword-import.mjs docs/kw/US.csv)",
       "Bash(curl -s -o /dev/null -w 'robots.txt %{http_code}\\\\n' https://www.cakequotekit.app/robots.txt)",
-      "Bash(node -e 'const s=require\\(\"fs\"\\).readFileSync\\(\"dist/server/index.js\",\"utf8\"\\);console.log\\(\"robots in worker:\",s.includes\\(\"\\\\\"/robots.txt\\\\\"\"\\),\"sitemap:\",s.includes\\(\"\\\\\"/sitemap.xml\\\\\"\"\\)\\)')"
+      "Bash(node -e 'const s=require\\(\"fs\"\\).readFileSync\\(\"dist/server/index.js\",\"utf8\"\\);console.log\\(\"robots in worker:\",s.includes\\(\"\\\\\"/robots.txt\\\\\"\"\\),\"sitemap:\",s.includes\\(\"\\\\\"/sitemap.xml\\\\\"\"\\)\\)')",
+      "Bash(vercel domains *)",
+      "Bash(vercel dns *)",
+      "Bash(grep -n \"scope\\\\|https://www.googleapis.com/auth\" /Users/Martin_1/WWW/pojistitonline.cz/server/utils/googleAuth.ts | head; grep -c \"GOOGLE_SA_KEY_B64\" /Users/Martin_1/WWW/pojistitonline.cz/.env /Users/Martin_1/WWW/pojistitonline.cz/.env.local)",
+      "Bash(dig +short NS cakequotekit.app)",
+      "Bash(dig +short A www.cakequotekit.app)",
+      "Bash(node gsc.mjs whoami)",
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(gcloud auth *)",
+      "Bash(gcloud projects *)",
+      "Bash(cp '/Users/Martin_1/Downloads/Keyword Stats 2026-09-09 at 17_16_42.csv' docs/kw/CA.csv)",
+      "Bash(cp '/Users/Martin_1/Downloads/Keyword Stats 2026-09-09 at 17_16_53.csv' docs/kw/GB.csv)",
+      "Bash(cp '/Users/Martin_1/Downloads/Keyword Stats 2026-09-09 at 17_17_08.csv' docs/kw/AU.csv)",
+      "Bash(node scripts/ads-keyword-import.mjs docs/kw/US.csv docs/kw/GB.csv docs/kw/CA.csv docs/kw/AU.csv)",
+      "WebFetch(domain:help.pinterest.com)",
+      "WebFetch(domain:community.pinterest.biz)"
     ]
   }
 }
