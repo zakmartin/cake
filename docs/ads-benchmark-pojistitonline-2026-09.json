@@ -1,0 +1,84 @@
+{
+ "generatedAt": "2026-09-09T14:52:29.569Z",
+ "benchmark": {
+  "currency": "CZK",
+  "name": "Martin Žák",
+  "from": "2026-06-11",
+  "to": "2026-09-08",
+  "cost": 77797.954041,
+  "clicks": 3434,
+  "impressions": 61972,
+  "conversions": 1296,
+  "allConversions": 1347,
+  "cpc": 22.655199196563775,
+  "ctr": 0.05541212160330472,
+  "clickToConv": 0.37740244612696566
+ },
+ "fx": {
+  "EUR": 0.04124,
+  "GBP": 0.03543,
+  "USD": 0.04806
+ },
+ "campaigns": [
+  {
+   "name": "Konkurence - pojistitonline.cz",
+   "type": "SEARCH",
+   "cost": 66990.925791,
+   "clicks": 2659,
+   "impressions": 40223,
+   "conversions": 1215,
+   "cpc": 25.194030007897705,
+   "ctr": 0.06610645650498471
+  },
+  {
+   "name": "SK – PZP – Search",
+   "type": "SEARCH",
+   "cost": 3490.35,
+   "clicks": 192,
+   "impressions": 7364,
+   "conversions": 36,
+   "cpc": 18.17890625,
+   "ctr": 0.026072786529060293
+  },
+  {
+   "name": "Majetek – Search",
+   "type": "SEARCH",
+   "cost": 3092.277911,
+   "clicks": 161,
+   "impressions": 2085,
+   "conversions": 6,
+   "cpc": 19.206695099378884,
+   "ctr": 0.07721822541966426
+  },
+  {
+   "name": "CZ – Generika – Search",
+   "type": "SEARCH",
+   "cost": 2312.033968,
+   "clicks": 143,
+   "impressions": 1245,
+   "conversions": 6,
+   "cpc": 16.168069706293707,
+   "ctr": 0.11485943775100402
+  },
+  {
+   "name": "Sales-Performance Max-2",
+   "type": "PERFORMANCE_MAX",
+   "cost": 1346.273659,
+   "clicks": 205,
+   "impressions": 7830,
+   "conversions": 33,
+   "cpc": 6.567188580487804,
+   "ctr": 0.026181353767560665
+  },
+  {
+   "name": "CHATA",
+   "type": "SEARCH",
+   "cost": 566.092712,
+   "clicks": 74,
+   "impressions": 3225,
+   "conversions": 0,
+   "cpc": 7.649901513513514,
+   "ctr": 0.022945736434108528
+  }
+ ]
+}

@@ -13,7 +13,31 @@
       "Bash(curl -s -w ' %{http_code}\\\\n' https://cake-plglgitqh-stonek1s-projects.vercel.app/api/subscribe-result -H 'content-type: application/json' -H 'origin: https://evil.example' --data-raw '{}')",
       "Bash(curl -s -w ' %{http_code}\\\\n' https://cake-plglgitqh-stonek1s-projects.vercel.app/api/subscribe-result -H 'content-type: application/json' -H 'origin: https://cake-plglgitqh-stonek1s-projects.vercel.app' --data-raw '{\"email\":\"martin.zak@email.cz\",\"consent\":true,\"company\":\"\",\"currency\":\"USD\",\"inputs\":{\"ingredients\":18,\"hours\":3,\"rate\":15,\"extras\":6,\"price\":65,\"feePercent\":3,\"feeFixed\":0.3,\"margin\":25}}')",
       "Bash(vercel inspect *)",
-      "Bash(grep -iA20 'builds\\\\|outputs\\\\|functions')"
+      "Bash(grep -iA20 'builds\\\\|outputs\\\\|functions')",
+      "Bash(ls /Users/Martin_1/WWW/ | head -50; echo ---; ls -d /Users/Martin_1/WWW/*pojist* /Users/Martin_1/*/*pojist* 2>/dev/null)",
+      "Read(//Users/Martin_1/WWW/**)",
+      "Bash(cd /Users/Martin_1/WWW/pojistitonline && ls -a && echo --- && grep -rli \"google.ads\\\\|googleads\\\\|adwords\\\\|developer.token\\\\|google-ads\" --include=*.js --include=*.ts --include=*.mjs --include=*.py --include=*.json --include=*.md --include=*.yaml --include=*.yml --include=.env* . 2>/dev/null | grep -v node_modules | head -20)",
+      "Read(//Users/Martin_1/WWW/pojistitonline/**)",
+      "Bash(cd /Users/Martin_1/WWW/pojistitonline.cz && ls -a && echo --- && grep -rli \"google.ads\\\\|googleads\\\\|adwords\\\\|developer.token\\\\|google-ads\" --include=*.js --include=*.ts --include=*.mjs --include=*.py --include=*.json --include=*.md --include=*.yaml --include=*.yml --include=.env* . 2>/dev/null | grep -v node_modules | head -20)",
+      "Read(//Users/Martin_1/WWW/pojistitonline.cz/**)",
+      "Bash(python3 -c ' *)",
+      "Read(//Users/Martin_1/Downloads/**)",
+      "Bash(pip3 list *)",
+      "Read(//Users/Martin_1/.config/**)",
+      "Read(//Users/Martin_1/WWW/pojistitonline.cz/server/utils/**)",
+      "Read(//Users/Martin_1/WWW/pojistitonline.cz/docs/**)",
+      "Bash(cd /Users/Martin_1/WWW/pojistitonline.cz && grep -ho \"^[A-Z_]*GOOGLE[A-Z_]*\\\\|^[A-Z_]*ADS[A-Z_]*\" .env .env.local | sort -u; echo ---; grep -o \"GOOGLE_ADS_[A-Z_]*\" -r server nuxt.config.ts | sort -u | sed 's/.*://' | sort -u; echo ---; grep -rn \"google-ads\\\\|googleapis\" package.json)",
+      "Bash(node ads-research.mjs)",
+      "Bash(node ads-benchmark.mjs)",
+      "Bash(node scripts/validate_palette.js \"#B5173F,#2F6B8F\" --mode light --surface \"#F7F4F9\")",
+      "Bash(node scripts/validate_palette.js \"#F0708F,#7FB4D6\" --mode dark --surface \"#1D1721\")",
+      "Bash(node --check scripts/ads-keyword-import.mjs)",
+      "Bash(iconv -f UTF-8 -t UTF-16LE)",
+      "Bash(node scripts/ads-keyword-import.mjs /tmp/claude-501/kwtest_US.csv)",
+      "Bash(node scripts/ads-keyword-import.mjs /tmp/claude-501/US.csv)",
+      "Bash(node scripts/ads-keyword-import.mjs docs/kw/US.csv)",
+      "Bash(curl -s -o /dev/null -w 'robots.txt %{http_code}\\\\n' https://www.cakequotekit.app/robots.txt)",
+      "Bash(node -e 'const s=require\\(\"fs\"\\).readFileSync\\(\"dist/server/index.js\",\"utf8\"\\);console.log\\(\"robots in worker:\",s.includes\\(\"\\\\\"/robots.txt\\\\\"\"\\),\"sitemap:\",s.includes\\(\"\\\\\"/sitemap.xml\\\\\"\"\\)\\)')"
     ]
   }
 }

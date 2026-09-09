@@ -1,0 +1,324 @@
+<title>Cake Quote Kit v Google Ads</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F7F4F9; --panel:#FFFFFF; --panel-2:#EFEAF3; --line:#E1D9E7; --line-strong:#C9BFD1;
+  --ink:#23192A; --ink-2:#5E5366; --muted:#82768B;
+  --accent:#B5173F; --accent-ink:#FFFFFF; --accent-soft:#F8E3EA;
+  --good:#2E7D5B; --good-soft:#E1F1EA; --warn:#9A5B00; --warn-soft:#F7ECD8; --bad:#9C2A2A; --bad-soft:#F6E1E1;
+  --grid:#EAE4EE; --curve:#B5173F; --ref:#5E5366;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B151F; --panel:#251E2A; --panel-2:#2E2634; --line:#3B3141; --line-strong:#4E4256;
+    --ink:#F2ECF4; --ink-2:#C5B9CB; --muted:#9A8DA2;
+    --accent:#F26F8E; --accent-ink:#1B151F; --accent-soft:#3D2230;
+    --good:#7BCBA4; --good-soft:#1F3A2E; --warn:#E5B060; --warn-soft:#3D2F17; --bad:#F08A8A; --bad-soft:#452222;
+    --grid:#2F2735; --curve:#F26F8E; --ref:#C5B9CB;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1B151F; --panel:#251E2A; --panel-2:#2E2634; --line:#3B3141; --line-strong:#4E4256;
+  --ink:#F2ECF4; --ink-2:#C5B9CB; --muted:#9A8DA2;
+  --accent:#F26F8E; --accent-ink:#1B151F; --accent-soft:#3D2230;
+  --good:#7BCBA4; --good-soft:#1F3A2E; --warn:#E5B060; --warn-soft:#3D2F17; --bad:#F08A8A; --bad-soft:#452222;
+  --grid:#2F2735; --curve:#F26F8E; --ref:#C5B9CB;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Young Serif","Iowan Old Style",Georgia,serif;font-weight:400;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,4.5vw,3.1rem);letter-spacing:-0.01em}
+h2{font-size:1.55rem;margin-top:.2rem}
+h3{font-size:1.15rem}
+p{margin:0}
+a{color:var(--accent)}
+.mono,.num{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px;display:grid;gap:56px}
+.prose{max-width:70ch;display:grid;gap:14px}
+.prose p{color:var(--ink-2)}
+.prose p strong{color:var(--ink)}
+header{display:grid;gap:18px;max-width:78ch}
+header p.lede{font-size:1.2rem;color:var(--ink-2)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--muted);font-size:.9rem}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding:22px 24px;border-left:4px solid var(--accent);background:var(--panel);border-radius:0 8px 8px 0}
+.verdict .big{font-family:"Young Serif",Georgia,serif;font-size:2.4rem;line-height:1;color:var(--accent);white-space:nowrap}
+.verdict .big small{display:block;font-family:"Source Sans 3",sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.verdict p{color:var(--ink-2)}
+section{display:grid;gap:22px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:700px){.grid-2{grid-template-columns:1fr}}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;display:grid;gap:6px;align-content:start}
+.tile .label{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tile .value{font-size:1.7rem;line-height:1.1}
+.tile .sub{color:var(--ink-2);font-size:.95rem}
+table{width:100%;border-collapse:collapse;font-size:.97rem}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--panel-2)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+/* model */
+.model{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px;display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:28px}
+@media (max-width:820px){.model{grid-template-columns:1fr}}
+.controls{display:grid;gap:18px;align-content:start}
+.ctl{display:grid;gap:6px}
+.ctl .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.ctl label{font-weight:600;font-size:.95rem}
+.ctl output{font-size:1rem;color:var(--ink)}
+.ctl .hint{font-size:.85rem;color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--accent);height:28px;margin:0}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+select{font:inherit;color:var(--ink);background:var(--panel-2);border:1px solid var(--line-strong);border-radius:6px;padding:6px 10px}
+.results{display:grid;gap:18px;align-content:start}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:var(--panel-2);border-radius:8px;padding:14px 16px;display:grid;gap:4px}
+.kpi .label{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.kpi .value{font-size:1.5rem;line-height:1.1}
+.kpi .sub{font-size:.85rem;color:var(--ink-2)}
+.status{padding:14px 16px;border-radius:8px;display:flex;gap:12px;align-items:flex-start;font-size:.97rem}
+.status.good{background:var(--good-soft);color:var(--good)}
+.status.warn{background:var(--warn-soft);color:var(--warn)}
+.status.bad{background:var(--bad-soft);color:var(--bad)}
+.status b{font-weight:600}
+.chart{position:relative}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart .axis{fill:var(--muted);font-size:11px;font-family:"IBM Plex Mono",monospace}
+.chart .title{fill:var(--ink-2);font-size:12.5px;font-weight:600}
+.chart .reflabel{fill:var(--ref);font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:.82rem;padding:6px 9px;border-radius:6px;transform:translate(-50%,-115%);white-space:nowrap;opacity:0;transition:opacity .12s}
+.tip.on{opacity:1}
+ol.steps,ul.list{margin:0;padding-left:1.3em;display:grid;gap:10px;color:var(--ink-2);max-width:72ch}
+ol.steps li strong,ul.list li strong{color:var(--ink)}
+.cond{display:grid;gap:14px}
+.cond .item{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.cond .item .thr{font-family:"IBM Plex Mono",monospace;font-size:1.05rem;color:var(--accent);white-space:nowrap;min-width:9ch}
+.cond .item p{color:var(--ink-2)}
+.cond .item h3{margin-bottom:4px}
+footer{color:var(--muted);font-size:.88rem;max-width:78ch;display:grid;gap:8px}
+footer a{color:var(--ink-2)}
+@media (prefers-reduced-motion: reduce){.tip{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Analýza · 9. září 2026</span>
+  <h1>Cake Quote Kit v Google Ads</h1>
+  <p class="lede">Za jakých okolností se vyplatí platit za kliky na produkt za 6,90 $. Model spojuje data z Plánovače klíčových slov pro USA, reálná čísla z účtu pojistitonline, veřejné benchmarky pro rok 2026 a poplatky Payhipu.</p>
+  <div class="meta"><span>Plánovač klíčových slov: USA, English, 8/2025 – 7/2026</span><span>Účet pojistitonline: 11. 6. – 8. 9. 2026</span><span>Kurz: 1 CZK = 0,048 USD (ECB přes frankfurter.app)</span><span>Produkt: Payhip, 6,90 USD</span></div>
+</header>
+
+<div class="verdict">
+  <div class="big">0,18 $<small>max. cena kliku</small></div>
+  <div class="prose">
+    <p><strong>Placené vyhledávání za současné ceny nedává smysl, a to ani v nejlepším případě.</strong> Z 6,90 $ zůstane po poplatcích Payhipu a Stripe 6,05 $. Aby se klik zaplatil při 3 % nákupní konverzi, nesmí stát víc než 0,18 $. Plánovač klíčových slov ukazuje pro hlavní dotaz „cake pricing calculator“ v USA bid na první stránce 1,63 až 4,51 $. To je 9× až 25× víc, než klik může vynést.</p>
+    <p>Druhý problém je velikost trhu. Celý cluster dortového oceňování má v USA 2 180 vyhledávání měsíčně a hlavní dotaz meziročně klesl o 47 %. I kdyby kliky byly zdarma, dá se z něj vytěžit zhruba 110 kliků a 3 prodeje za měsíc. Podmínky, za kterých má propagace smysl, jsou níže. Google Search mezi nimi není.</p>
+  </div>
+</div>
+
+<section>
+  <span class="eyebrow">Vstupy</span>
+  <h2>Co víme a odkud</h2>
+  <div class="grid-2">
+    <div class="tile"><span class="label">Váš účet · CPC</span><span class="value num">22,66 Kč <span style="color:var(--muted);font-size:1rem">≈ 1,09 $</span></span><span class="sub">3 434 kliků za 77 798 Kč, 90 dní, hlavně kampaň „Konkurence“. Český trh je levnější než americký.</span></div>
+    <div class="tile"><span class="label">Váš účet · CTR a klik→lead</span><span class="value num">5,5 % · 37,7 %</span><span class="sub">1 296 konverzí z 3 434 kliků. Vysoká konverze plyne z lead formuláře bez platby, ne z prodeje.</span></div>
+    <div class="tile"><span class="label">Plánovač · „cake pricing calculator“ USA</span><span class="value num">1,63 – 4,51 $</span><span class="sub">Bid na první stránce (34,00 – 93,94 Kč), 1 600 vyhledávání měsíčně, meziročně −47 %. Oborový benchmark Arts &amp; Entertainment je 1,60 $, průměr všech oborů 2,96 $.</span></div>
+    <div class="tile"><span class="label">Payhip · poplatky</span><span class="value num" style="font-size:1.35rem">5 % + 2,9 % + 0,30 $</span><span class="sub">Free plán Payhipu plus Stripe. S PayPalem (3,49 % + 0,49 $) zůstane 5,82 $ místo 6,05 $.</span></div>
+  </div>
+  <div class="prose">
+    <p><strong>Poznámka k datům:</strong> Plánovač byl exportován ručně z účtu pojistitonline (API přístup Explorer metody Plánovače nepovoluje). Bidy jsou v Kč a přepočtené kurzem ECB. „cake cost calculator“ a „cake pricing calculator“ mají identická čísla, Google je sloučil do jedné skupiny blízkých variant; v součtu trhu je proto počítám jednou. Google Autocomplete k tomu přidává varianty „free“ a „excel free download“, tedy cenově citlivé publikum.</p>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Trh · USA</span>
+  <h2>Kolik lidí to vůbec hledá</h2>
+  <div class="tbl"><table id="kwtable">
+    <thead><tr><th>Dotaz</th><th class="num">Hledání / měsíc</th><th class="num">Meziročně</th><th>Konkurence inzerentů</th><th class="num">Bid 1. strana</th><th>12 měsíců</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <div class="grid-2">
+    <div class="tile"><span class="label">Celý cluster · unikátní poptávka</span><span class="value num">2 180 / měsíc</span><span class="sub">Součet bez duplicitní skupiny variant. Špička říjen (2 900 u hlavního dotazu), dno únor (880). Sezóna je podzim před svátky.</span></div>
+    <div class="tile"><span class="label">Strop při 5 % CTR a 3 % konverzi</span><span class="value num">≈ 110 kliků · 3 prodeje</span><span class="sub">Za 178 $ útraty při bidu 1,63 $ přinese 20 $ čistého. Ztráta 158 $ měsíčně i při stoprocentním podílu zobrazení.</span></div>
+  </div>
+  <div class="prose"><p><strong>Co z toho plyne:</strong> Google Search pro tento produkt nemá ani jednotkovou ekonomiku, ani objem. Index konkurence 5 ze 100 u hlavního dotazu ale říká, že o něj téměř nikdo neinzeruje, a organické výsledky tak drží blogy (Sugar &amp; Sparrow, Chelsweets, Rose Bakes) a appky (BakeProfit, Bakesy). Bezplatná kalkulačka na webu cílí přesně sem. Organické pořadí na „cake pricing calculator“ je pro 1 600 hledání měsíčně dosažitelnější a levnější než jakýkoli placený klik.</p></div>
+</section>
+
+<section>
+  <span class="eyebrow">Jednotková ekonomika</span>
+  <h2>Kolik z jednoho prodeje zůstane</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Cena</th><th class="num">Čistý výnos (Stripe)</th><th class="num">Max. CPC při 2 %</th><th class="num">Max. CPC při 3 %</th><th class="num">Max. CPC při 5 %</th><th>Proti bidu 1,63 $</th></tr></thead>
+    <tbody>
+      <tr><td class="num">6,90 $ <span class="pill warn">dnes</span></td><td class="num">6,05 $</td><td class="num">0,12 $</td><td class="num">0,18 $</td><td class="num">0,30 $</td><td><span class="pill bad">nevyplatí se</span></td></tr>
+      <tr><td class="num">14,90 $</td><td class="num">13,42 $</td><td class="num">0,27 $</td><td class="num">0,40 $</td><td class="num">0,67 $</td><td><span class="pill bad">nevyplatí se</span></td></tr>
+      <tr><td class="num">19,00 $</td><td class="num">17,20 $</td><td class="num">0,34 $</td><td class="num">0,52 $</td><td class="num">0,86 $</td><td><span class="pill bad">nevyplatí se</span></td></tr>
+      <tr><td class="num">29,00 $</td><td class="num">26,41 $</td><td class="num">0,53 $</td><td class="num">0,79 $</td><td class="num">1,32 $</td><td><span class="pill bad">nevyplatí se</span></td></tr>
+      <tr><td class="num">49,00 $</td><td class="num">44,83 $</td><td class="num">0,90 $</td><td class="num">1,34 $</td><td class="num">2,24 $</td><td><span class="pill warn">jen při ≥ 4 % konverzi</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose"><p>Konverze 2–5 % je optimistická. Jde o studený návštěvník z vyhledávání na neznámou značku, který si má koupit tabulku za dolar-y a k tomu potřebuje desktopový Excel. Realistický start je spíše 1–2 %.</p></div>
+</section>
+
+<section>
+  <span class="eyebrow">Model</span>
+  <h2>Kdy se klik zaplatí</h2>
+  <div class="model">
+    <div class="controls">
+      <div class="ctl"><div class="row"><label for="price">Cena produktu</label><output class="num" id="o-price">6,90 $</output></div><input type="range" id="price" min="4" max="79" step="0.1" value="6.9"><span class="hint">Payhip 5 % + Stripe 2,9 % + 0,30 $ se odečítají automaticky.</span></div>
+      <div class="ctl"><div class="row"><label for="cr">Klik → nákup přímo</label><output class="num" id="o-cr">1,5 %</output></div><input type="range" id="cr" min="0" max="10" step="0.1" value="1.5"><span class="hint">Návštěvníci, kteří klepnou na „Buy on Payhip“ a zaplatí.</span></div>
+      <div class="ctl"><div class="row"><label for="lead">Klik → e-mail</label><output class="num" id="o-lead">25 %</output></div><input type="range" id="lead" min="0" max="60" step="1" value="25"><span class="hint">Kalkulačka odemyká výsledek až po zadání e-mailu, proto vysoký odhad.</span></div>
+      <div class="ctl"><div class="row"><label for="e2b">E-mail → nákup (celá sekvence)</label><output class="num" id="o-e2b">5 %</output></div><input type="range" id="e2b" min="0" max="30" step="0.5" value="5"><span class="hint">Tři e-maily sekvence. 3–8 % je běžné pro levné digitální produkty.</span></div>
+      <div class="ctl"><div class="row"><label for="backend">Další výnos na 1 e-mail</label><output class="num" id="o-backend">0,00 $</output></div><input type="range" id="backend" min="0" max="5" step="0.1" value="0"><span class="hint">Budoucí produkty, kurz, affiliate. Dnes neexistuje.</span></div>
+      <div class="ctl"><div class="row"><label for="cpc">Cena kliku, kterou zaplatíte</label><output class="num" id="o-cpc">1,65 $</output></div><input type="range" id="cpc" min="0.05" max="5" step="0.05" value="1.65"><span class="hint">1,09 $ váš účet · 1,63 $ spodní bid Plánovače · 2,96 $ průměr oborů · 4,51 $ horní bid</span></div>
+      <div class="ctl"><div class="row"><label for="budget">Měsíční rozpočet</label><output class="num" id="o-budget">300 $</output></div><input type="range" id="budget" min="50" max="3000" step="50" value="300"></div>
+    </div>
+    <div class="results">
+      <div class="status" id="status"></div>
+      <div class="kpis">
+        <div class="kpi"><span class="label">Hodnota kliku</span><span class="value num" id="k-value">–</span><span class="sub">čistý výnos × konverze, obě cesty</span></div>
+        <div class="kpi"><span class="label">Max. CPC (break-even)</span><span class="value num" id="k-max">–</span><span class="sub" id="k-max-sub">–</span></div>
+        <div class="kpi"><span class="label">Zisk na klik</span><span class="value num" id="k-profit">–</span><span class="sub">hodnota kliku − zaplacené CPC</span></div>
+        <div class="kpi"><span class="label">Za měsíc</span><span class="value num" id="k-month">–</span><span class="sub" id="k-month-sub">–</span></div>
+      </div>
+      <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
+      <p class="hint" style="color:var(--muted);font-size:.85rem">Křivka: maximální cena kliku podle přímé konverze při zvolené ceně a nastavené e-mailové cestě. Přerušované čáry: reálné ceny kliku. Kde leží čára nad křivkou, kampaň prodělává.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Závěr</span>
+  <h2>Za jakých okolností to má smysl</h2>
+  <div class="cond">
+    <div class="item"><span class="thr">≥ 49 $</span><div><h3>Vyšší cena nebo balíček</h3><p>Spodní bid 1,63 $ snese až cena 49 $ při 4 % konverzi. Při 29 $ by musela konverze překročit 6 %, což je u studeného provozu nereálné. Balíček kit + kontrolní seznam + šablony pro komunikaci se zákazníky je cesta, jak cenu obhájit. Pod 29 $ nemá cenu Google Ads vůbec testovat.</p></div></div>
+    <div class="item"><span class="thr">≥ 1 $ / e-mail</span><div><h3>Produkt na pozadí</h3><p>Kalkulačka sbírá e-maily dobře. Při 25 % sběru stačí, aby jeden kontakt vynesl přes 1 $ celkem, a hodnota kliku překročí 0,30 $. Dnes kontakt nese jen 5 % × 6,05 $ = 0,30 $. Bez dražšího návazného produktu (kurz, šablony za 29–49 $) se e-mailová cesta nezaplatí.</p></div></div>
+    <div class="item"><span class="thr">≤ 0,20 $</span><div><h3>Kliky pod dvacet centů</h3><p>Ve vyhledávání v USA takové kliky nejsou: spodní hranice pro hlavní dotaz je 1,63 $. Jsou na Pinterestu (pekařky jsou jeho jádrové publikum, CPC 0,10–0,50 $), v remarketingu na návštěvníky kalkulačky a v levných zemích (Jižní Afrika, Indie), kde je ale 6,90 $ drahé a Payhip s PayPalem ne vždy dostupný.</p></div></div>
+    <div class="item"><span class="thr">objem</span><div><h3>Trh, který stojí za rozpočet</h3><p>2 180 hledání měsíčně v USA je strop kolem 110 kliků. I s dokonalou ekonomikou jde o jednotky prodejů měsíčně. Kampaň dává smysl až s produktem, jehož publikum je širší než „lidé hledající kalkulačku na ceny dortů“, nebo na trzích UK, Kanada a Austrálie dohromady, což ale vyžaduje jejich export z Plánovače.</p></div></div>
+    <div class="item"><span class="thr">měření</span><div><h3>Nejdřív konverze, pak rozpočet</h3><p>Web dnes neměří nic: žádná analytika, žádný Payhip → Ads import. Bez propojení nákupu na klik nelze CPC řídit ani zpětně vyhodnotit. To je podmínka nutná pro jakýkoli test, i za 50 $.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Doporučení</span>
+  <h2>Co udělat teď</h2>
+  <ol class="steps">
+    <li><strong>Google Search neplatit.</strong> Ekonomika ani objem to neunesou. Nechat kalkulačku sbírat e-maily z organiky, Pinterestu a facebookových skupin pro domácí pekařky. Po 200+ kontaktech změřit e-mail → nákup a dosadit do modelu.</li>
+    <li><strong>Jít po organice na „cake pricing calculator“.</strong> 1 600 hledání měsíčně, index konkurence 5. Stránka s kalkulačkou potřebuje vlastní URL, titulek a popis na tento dotaz, odstranění <span class="mono">noindex</span> a pár odkazů z pekařských komunit. To je jediný kanál, kde se dortový trh dá obsloužit za nulovou cenu kliku.</li>
+    <li><strong>Zapojit měření:</strong> GA4 na web, Payhip conversion webhook nebo tag „thank you“ stránky do Google Ads, UTM na odkaz do Payhipu. Bez toho nemá smysl utratit ani korunu.</li>
+    <li><strong>Otestovat cenu.</strong> Balíček za 19–29 $ na Payhipu jako druhá varianta. Pokud se konverze nepropadne pod polovinu, roste hodnota kliku 3–4×.</li>
+    <li><strong>Až pak malý test:</strong> remarketing na návštěvníky kalkulačky, kteří nekoupili, 5 $ denně, 30 dní, nejlépe v říjnu a listopadu, kdy je poptávka nejvyšší. Vyhledávací kampaň jen s balíčkem od 49 $ a exportem z Plánovače pro UK, Kanadu a Austrálii, který ukáže, zda tam bidy klesnou pod 1 $.</li>
+  </ol>
+</section>
+
+<footer>
+  <p>Objemy a bidy: Plánovač klíčových slov Google Ads, export 9. 9. 2026, USA, English, období 8/2025–7/2026, bidy přepočteny z CZK. Čísla z účtu pojistitonline jsou z Google Ads API (customer report, 90 dní). Benchmarky: WordStream / LocaliQ 2025–2026, WebFX 2026. Poplatky: Payhip pricing 2026. Kurz CZK/USD: frankfurter.app k 9. 9. 2026. Objemy vyhledávání ovlivňují strop výdělku, ne to, zda se klik zaplatí; model výše pracuje s cenou kliku a konverzí.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const fmt$=(v,d=2)=>v.toLocaleString('cs-CZ',{minimumFractionDigits:d,maximumFractionDigits:d})+' $';
+  const fmtPct=(v,d=1)=>v.toLocaleString('cs-CZ',{minimumFractionDigits:d,maximumFractionDigits:d})+' %';
+  const ids=['price','cr','lead','e2b','backend','cpc','budget'];
+  const refs=[{v:1.09,l:'pojistitonline 1,09 $',below:true},{v:1.63,l:'Plánovač, spodní bid 1,63 $'},{v:2.96,l:'průměr oborů 2,96 $'},{v:4.51,l:'Plánovač, horní bid 4,51 $'}];
+  const net=p=>p-p*0.05-p*0.029-0.30;
+
+  function read(){const o={};ids.forEach(i=>o[i]=parseFloat($(i).value));return o}
+
+  function update(){
+    const s=read();
+    const n=Math.max(0,net(s.price));
+    const direct=n*s.cr/100;
+    const perLead=n*s.e2b/100+s.backend;
+    const viaEmail=perLead*s.lead/100;
+    const value=direct+viaEmail;
+    const profit=value-s.cpc;
+    const clicks=s.budget/s.cpc;
+    const sales=clicks*(s.cr/100+s.lead/100*s.e2b/100);
+    const monthProfit=profit*clicks;
+
+    $('o-price').textContent=fmt$(s.price);$('o-cr').textContent=fmtPct(s.cr);$('o-lead').textContent=fmtPct(s.lead,0);
+    $('o-e2b').textContent=fmtPct(s.e2b);$('o-backend').textContent=fmt$(s.backend);$('o-cpc').textContent=fmt$(s.cpc);$('o-budget').textContent=s.budget.toLocaleString('cs-CZ')+' $';
+
+    $('k-value').textContent=fmt$(value,3);
+    $('k-max').textContent=fmt$(value,2);
+    $('k-max-sub').textContent='čistý výnos '+fmt$(n)+' z '+fmt$(s.price);
+    $('k-profit').textContent=(profit>=0?'+':'−')+fmt$(Math.abs(profit));
+    $('k-profit').style.color=profit>=0?'var(--good)':'var(--bad)';
+    $('k-month').textContent=(monthProfit>=0?'+':'−')+fmt$(Math.abs(monthProfit),0);
+    $('k-month').style.color=monthProfit>=0?'var(--good)':'var(--bad)';
+    $('k-month-sub').textContent=Math.round(clicks).toLocaleString('cs-CZ')+' kliků, '+sales.toLocaleString('cs-CZ',{maximumFractionDigits:1})+' prodejů, '+Math.round(clicks*s.lead/100).toLocaleString('cs-CZ')+' e-mailů';
+
+    const st=$('status');
+    const ratio=s.cpc/Math.max(value,1e-9);
+    if(profit>=0){st.className='status good';st.innerHTML='<b>Zaplatí se.</b> Klik vynese '+fmt$(value,2)+' a stojí '+fmt$(s.cpc)+'. Konverze může klesnout až o '+Math.round((1-ratio)*100)+' % a pořád vyjde nula.';}
+    else if(ratio<2){st.className='status warn';st.innerHTML='<b>Těsně pod nulou.</b> Klik stojí '+ratio.toLocaleString('cs-CZ',{maximumFractionDigits:1})+'× víc, než vynese. Dorovnat by to mohla lepší konverze nebo o třetinu levnější kliky.';}
+    else{st.className='status bad';st.innerHTML='<b>Prodělává.</b> Klik stojí '+ratio.toLocaleString('cs-CZ',{maximumFractionDigits:1})+'× víc, než vynese ('+fmt$(value,2)+'). Tohle optimalizace kampaně nedorovná; musí se změnit cena, produkt na pozadí nebo zdroj kliků.';}
+
+    drawChart(s,n,viaEmail);
+  }
+
+  function drawChart(s,n,viaEmail){
+    const W=640,H=300,ml=54,mr=16,mt=18,mb=40;
+    const pw=W-ml-mr,ph=H-mt-mb;
+    const xMax=10;
+    const yTop=Math.max(0.5,n*xMax/100+viaEmail,s.cpc,4.51)*1.08;
+    const x=v=>ml+v/xMax*pw, y=v=>mt+ph-v/yTop*ph;
+    const yStep=yTop>4?1:yTop>2?0.5:0.25;
+    let g='';
+    for(let v=0;v<=yTop;v+=yStep){g+='<line x1="'+ml+'" x2="'+(W-mr)+'" y1="'+y(v).toFixed(1)+'" y2="'+y(v).toFixed(1)+'" stroke="var(--grid)" stroke-width="1"/><text class="axis" x="'+(ml-8)+'" y="'+(y(v)+4).toFixed(1)+'" text-anchor="end">'+v.toFixed(2)+' $</text>';}
+    let xt='';
+    for(let v=0;v<=xMax;v+=2){xt+='<text class="axis" x="'+x(v)+'" y="'+(H-mb+18)+'" text-anchor="middle">'+v+' %</text>';}
+    let d='';
+    for(let i=0;i<=100;i++){const cr=i/100*xMax;const val=n*cr/100+viaEmail;d+=(i?'L':'M')+x(cr).toFixed(1)+' '+y(Math.min(val,yTop)).toFixed(1)+' ';}
+    let area='M'+x(0).toFixed(1)+' '+y(0).toFixed(1)+' '+d.replace(/^M/,'L')+'L'+x(xMax).toFixed(1)+' '+y(0).toFixed(1)+' Z';
+    let rl='';
+    refs.forEach((r,i)=>{if(r.v>yTop)return;const yy=y(r.v);rl+='<line x1="'+ml+'" x2="'+(W-mr)+'" y1="'+yy.toFixed(1)+'" y2="'+yy.toFixed(1)+'" stroke="var(--ref)" stroke-width="1" stroke-dasharray="4 4" opacity=".7"/><text class="reflabel" x="'+(W-mr)+'" y="'+(r.below?yy+12:yy-4).toFixed(1)+'" text-anchor="end">'+r.l+'</text>';});
+    const yc=y(Math.min(s.cpc,yTop));
+    const your='<line x1="'+ml+'" x2="'+(W-mr)+'" y1="'+yc.toFixed(1)+'" y2="'+yc.toFixed(1)+'" stroke="var(--ink)" stroke-width="1.5"/><text class="title" x="'+(ml+6)+'" y="'+(yc-6).toFixed(1)+'">vaše CPC '+s.cpc.toLocaleString('cs-CZ',{minimumFractionDigits:2})+' $</text>';
+    const crx=x(Math.min(s.cr,xMax)), cry=y(Math.min(n*s.cr/100+viaEmail,yTop));
+    const dot='<circle cx="'+crx.toFixed(1)+'" cy="'+cry.toFixed(1)+'" r="5" fill="var(--curve)" stroke="var(--panel)" stroke-width="2"/>';
+    const svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Maximální cena kliku podle přímé konverze">'
+      +g+xt
+      +'<path d="'+area+'" fill="var(--curve)" opacity=".10"/>'
+      +'<path d="'+d+'" fill="none" stroke="var(--curve)" stroke-width="2" stroke-linejoin="round"/>'
+      +rl+your+dot
+      +'<line x1="'+ml+'" x2="'+(W-mr)+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="var(--line-strong)"/>'
+      +'<text class="axis" x="'+(ml+pw/2)+'" y="'+(H-4)+'" text-anchor="middle">přímá konverze klik → nákup</text>'
+      +'<text class="title" x="'+ml+'" y="'+(mt-6)+'">max. cena kliku pro nulový zisk</text>'
+      +'<rect id="hit" x="'+ml+'" y="'+mt+'" width="'+pw+'" height="'+ph+'" fill="transparent"/>'
+      +'</svg>';
+    const c=$('chart');const tip=$('tip');
+    c.innerHTML=svg;c.appendChild(tip);
+    const svgEl=c.querySelector('svg');
+    const hit=c.querySelector('#hit');
+    const move=e=>{const r=svgEl.getBoundingClientRect();const px=(e.clientX-r.left)/r.width*W;const cr=Math.max(0,Math.min(xMax,(px-ml)/pw*xMax));const val=n*cr/100+viaEmail;tip.textContent='při '+cr.toFixed(1)+' % konverzi: max. CPC '+fmt$(val);const lx=x(cr)/W*r.width, ly=y(Math.min(val,yTop))/H*r.height;tip.style.left=lx+'px';tip.style.top=ly+'px';tip.classList.add('on');};
+    hit.addEventListener('mousemove',move);hit.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+  }
+
+
+  const KW=[
+    {t:'cake pricing calculator',v:1600,yoy:-47,c:'Nízká',ci:5,lo:1.63,hi:4.51,m:[1900,1900,2900,1600,1000,1000,880,1600,1900,1900,1900,1000],dup:'skupina variant s „cake cost calculator“'},
+    {t:'cake order form template',v:210,yoy:27,c:'Vysoká',ci:100,lo:0.90,hi:4.00,m:[320,320,170,210,90,170,170,260,260,260,170,140]},
+    {t:'how to price a cake',v:110,yoy:-36,c:'Nízká',ci:4,m:[170,140,140,90,70,110,110,140,170,110,110,90]},
+    {t:'cupcake pricing calculator',v:90,yoy:100,c:'Nízká',ci:0,m:[90,90,90,50,40,70,50,70,90,70,90,140]},
+    {t:'how much to charge for a cake',v:90,yoy:-50,c:'Nízká',ci:1,m:[90,90,110,70,70,70,70,90,90,90,70,70]},
+    {t:'cake pricing guide',v:50,yoy:-44,c:'Střední',ci:51,m:[70,50,50,50,30,40,50,50,50,40,30,50]},
+    {t:'cake pricing spreadsheet',v:20,yoy:150,c:'Nízká',ci:30,m:[10,20,10,10,10,20,10,20,30,20,10,50]},
+    {t:'home bakery pricing',v:10,yoy:0,c:'Nízká',ci:0,m:[10,10,20,10,10,10,10,10,20,10,10,10]},
+    {t:'cake business pricing',v:0,yoy:null,c:'–',ci:null,m:[]}
+  ];
+  function spark(m){if(!m.length)return '';const w=120,h=26,max=Math.max(...m);const pts=m.map((n,i)=>(i/(m.length-1)*(w-4)+2).toFixed(1)+','+((h-3)-(n/max)*(h-6)).toFixed(1));const last=pts[pts.length-1].split(',');const peak=m.indexOf(max);const pk=pts[peak].split(',');return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><polyline points="'+pts.join(' ')+'" fill="none" stroke="var(--curve)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="'+pk[0]+'" cy="'+pk[1]+'" r="2.5" fill="var(--curve)"/></svg>'}
+  const tb=document.querySelector('#kwtable tbody');
+  tb.innerHTML=KW.map(k=>'<tr><td>'+k.t+(k.dup?' <span class="pill warn" title="'+k.dup+'">= cake cost calculator</span>':'')+'</td><td class="num">'+(k.v?k.v.toLocaleString('cs-CZ'):'bez dat')+'</td><td class="num" style="color:'+(k.yoy==null?'var(--muted)':k.yoy<0?'var(--bad)':'var(--good)')+'">'+(k.yoy==null?'–':(k.yoy>0?'+':'')+k.yoy+' %')+'</td><td>'+k.c+(k.ci!=null?' <span style="color:var(--muted)">('+k.ci+'/100)</span>':'')+'</td><td class="num">'+(k.lo?k.lo.toFixed(2).replace('.',',')+' – '+k.hi.toFixed(2).replace('.',',')+' $':'<span style="color:var(--muted)">málo dat</span>')+'</td><td>'+spark(k.m)+'</td></tr>').join('');
+
+  ids.forEach(i=>$(i).addEventListener('input',update));
+  update();
+})();
+</script>

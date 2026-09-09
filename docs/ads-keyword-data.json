@@ -1,0 +1,599 @@
+{
+ "generatedAt": "2026-09-09T15:08:57.828Z",
+ "source": "Keyword Planner manual export",
+ "fx": {
+  "CZK": {
+   "EUR": 0.04124,
+   "GBP": 0.03543,
+   "USD": 0.04806
+  }
+ },
+ "markets": {
+  "US": {
+   "file": "US.csv",
+   "count": 10,
+   "totalVolume": 3780,
+   "rows": [
+    {
+     "text": "cake cost calculator",
+     "volume": 1600,
+     "competition": "Nízká",
+     "competitionIndex": 5,
+     "lowBidUsd": 1.63404,
+     "highBidUsd": 4.5147564,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 1900
+      },
+      {
+       "label": "Sep 2025",
+       "n": 1900
+      },
+      {
+       "label": "Oct 2025",
+       "n": 2900
+      },
+      {
+       "label": "Nov 2025",
+       "n": 1600
+      },
+      {
+       "label": "Dec 2025",
+       "n": 1000
+      },
+      {
+       "label": "Jan 2026",
+       "n": 1000
+      },
+      {
+       "label": "Feb 2026",
+       "n": 880
+      },
+      {
+       "label": "Mar 2026",
+       "n": 1600
+      },
+      {
+       "label": "Apr 2026",
+       "n": 1900
+      },
+      {
+       "label": "May 2026",
+       "n": 1900
+      },
+      {
+       "label": "Jun 2026",
+       "n": 1900
+      },
+      {
+       "label": "Jul 2026",
+       "n": 1000
+      }
+     ]
+    },
+    {
+     "text": "cake pricing calculator",
+     "volume": 1600,
+     "competition": "Nízká",
+     "competitionIndex": 5,
+     "lowBidUsd": 1.63404,
+     "highBidUsd": 4.5147564,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 1900
+      },
+      {
+       "label": "Sep 2025",
+       "n": 1900
+      },
+      {
+       "label": "Oct 2025",
+       "n": 2900
+      },
+      {
+       "label": "Nov 2025",
+       "n": 1600
+      },
+      {
+       "label": "Dec 2025",
+       "n": 1000
+      },
+      {
+       "label": "Jan 2026",
+       "n": 1000
+      },
+      {
+       "label": "Feb 2026",
+       "n": 880
+      },
+      {
+       "label": "Mar 2026",
+       "n": 1600
+      },
+      {
+       "label": "Apr 2026",
+       "n": 1900
+      },
+      {
+       "label": "May 2026",
+       "n": 1900
+      },
+      {
+       "label": "Jun 2026",
+       "n": 1900
+      },
+      {
+       "label": "Jul 2026",
+       "n": 1000
+      }
+     ]
+    },
+    {
+     "text": "cake order form template",
+     "volume": 210,
+     "competition": "Vysoká",
+     "competitionIndex": 100,
+     "lowBidUsd": 0.9025668,
+     "highBidUsd": 3.998592,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 320
+      },
+      {
+       "label": "Sep 2025",
+       "n": 320
+      },
+      {
+       "label": "Oct 2025",
+       "n": 170
+      },
+      {
+       "label": "Nov 2025",
+       "n": 210
+      },
+      {
+       "label": "Dec 2025",
+       "n": 90
+      },
+      {
+       "label": "Jan 2026",
+       "n": 170
+      },
+      {
+       "label": "Feb 2026",
+       "n": 170
+      },
+      {
+       "label": "Mar 2026",
+       "n": 260
+      },
+      {
+       "label": "Apr 2026",
+       "n": 260
+      },
+      {
+       "label": "May 2026",
+       "n": 260
+      },
+      {
+       "label": "Jun 2026",
+       "n": 170
+      },
+      {
+       "label": "Jul 2026",
+       "n": 140
+      }
+     ]
+    },
+    {
+     "text": "how to price a cake",
+     "volume": 110,
+     "competition": "Nízká",
+     "competitionIndex": 4,
+     "lowBidUsd": null,
+     "highBidUsd": null,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 170
+      },
+      {
+       "label": "Sep 2025",
+       "n": 140
+      },
+      {
+       "label": "Oct 2025",
+       "n": 140
+      },
+      {
+       "label": "Nov 2025",
+       "n": 90
+      },
+      {
+       "label": "Dec 2025",
+       "n": 70
+      },
+      {
+       "label": "Jan 2026",
+       "n": 110
+      },
+      {
+       "label": "Feb 2026",
+       "n": 110
+      },
+      {
+       "label": "Mar 2026",
+       "n": 140
+      },
+      {
+       "label": "Apr 2026",
+       "n": 170
+      },
+      {
+       "label": "May 2026",
+       "n": 110
+      },
+      {
+       "label": "Jun 2026",
+       "n": 110
+      },
+      {
+       "label": "Jul 2026",
+       "n": 90
+      }
+     ]
+    },
+    {
+     "text": "cupcake pricing calculator",
+     "volume": 90,
+     "competition": "Nízká",
+     "competitionIndex": 0,
+     "lowBidUsd": null,
+     "highBidUsd": null,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 90
+      },
+      {
+       "label": "Sep 2025",
+       "n": 90
+      },
+      {
+       "label": "Oct 2025",
+       "n": 90
+      },
+      {
+       "label": "Nov 2025",
+       "n": 50
+      },
+      {
+       "label": "Dec 2025",
+       "n": 40
+      },
+      {
+       "label": "Jan 2026",
+       "n": 70
+      },
+      {
+       "label": "Feb 2026",
+       "n": 50
+      },
+      {
+       "label": "Mar 2026",
+       "n": 70
+      },
+      {
+       "label": "Apr 2026",
+       "n": 90
+      },
+      {
+       "label": "May 2026",
+       "n": 70
+      },
+      {
+       "label": "Jun 2026",
+       "n": 90
+      },
+      {
+       "label": "Jul 2026",
+       "n": 140
+      }
+     ]
+    },
+    {
+     "text": "how much to charge for a cake",
+     "volume": 90,
+     "competition": "Nízká",
+     "competitionIndex": 1,
+     "lowBidUsd": null,
+     "highBidUsd": null,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 90
+      },
+      {
+       "label": "Sep 2025",
+       "n": 90
+      },
+      {
+       "label": "Oct 2025",
+       "n": 110
+      },
+      {
+       "label": "Nov 2025",
+       "n": 70
+      },
+      {
+       "label": "Dec 2025",
+       "n": 70
+      },
+      {
+       "label": "Jan 2026",
+       "n": 70
+      },
+      {
+       "label": "Feb 2026",
+       "n": 70
+      },
+      {
+       "label": "Mar 2026",
+       "n": 90
+      },
+      {
+       "label": "Apr 2026",
+       "n": 90
+      },
+      {
+       "label": "May 2026",
+       "n": 90
+      },
+      {
+       "label": "Jun 2026",
+       "n": 70
+      },
+      {
+       "label": "Jul 2026",
+       "n": 70
+      }
+     ]
+    },
+    {
+     "text": "cake pricing guide",
+     "volume": 50,
+     "competition": "Střední",
+     "competitionIndex": 51,
+     "lowBidUsd": null,
+     "highBidUsd": null,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 70
+      },
+      {
+       "label": "Sep 2025",
+       "n": 50
+      },
+      {
+       "label": "Oct 2025",
+       "n": 50
+      },
+      {
+       "label": "Nov 2025",
+       "n": 50
+      },
+      {
+       "label": "Dec 2025",
+       "n": 30
+      },
+      {
+       "label": "Jan 2026",
+       "n": 40
+      },
+      {
+       "label": "Feb 2026",
+       "n": 50
+      },
+      {
+       "label": "Mar 2026",
+       "n": 50
+      },
+      {
+       "label": "Apr 2026",
+       "n": 50
+      },
+      {
+       "label": "May 2026",
+       "n": 40
+      },
+      {
+       "label": "Jun 2026",
+       "n": 30
+      },
+      {
+       "label": "Jul 2026",
+       "n": 50
+      }
+     ]
+    },
+    {
+     "text": "cake pricing spreadsheet",
+     "volume": 20,
+     "competition": "Nízká",
+     "competitionIndex": 30,
+     "lowBidUsd": null,
+     "highBidUsd": null,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 10
+      },
+      {
+       "label": "Sep 2025",
+       "n": 20
+      },
+      {
+       "label": "Oct 2025",
+       "n": 10
+      },
+      {
+       "label": "Nov 2025",
+       "n": 10
+      },
+      {
+       "label": "Dec 2025",
+       "n": 10
+      },
+      {
+       "label": "Jan 2026",
+       "n": 20
+      },
+      {
+       "label": "Feb 2026",
+       "n": 10
+      },
+      {
+       "label": "Mar 2026",
+       "n": 20
+      },
+      {
+       "label": "Apr 2026",
+       "n": 30
+      },
+      {
+       "label": "May 2026",
+       "n": 20
+      },
+      {
+       "label": "Jun 2026",
+       "n": 10
+      },
+      {
+       "label": "Jul 2026",
+       "n": 50
+      }
+     ]
+    },
+    {
+     "text": "home bakery pricing",
+     "volume": 10,
+     "competition": "Nízká",
+     "competitionIndex": 0,
+     "lowBidUsd": null,
+     "highBidUsd": null,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 10
+      },
+      {
+       "label": "Sep 2025",
+       "n": 10
+      },
+      {
+       "label": "Oct 2025",
+       "n": 20
+      },
+      {
+       "label": "Nov 2025",
+       "n": 10
+      },
+      {
+       "label": "Dec 2025",
+       "n": 10
+      },
+      {
+       "label": "Jan 2026",
+       "n": 10
+      },
+      {
+       "label": "Feb 2026",
+       "n": 10
+      },
+      {
+       "label": "Mar 2026",
+       "n": 10
+      },
+      {
+       "label": "Apr 2026",
+       "n": 20
+      },
+      {
+       "label": "May 2026",
+       "n": 10
+      },
+      {
+       "label": "Jun 2026",
+       "n": 10
+      },
+      {
+       "label": "Jul 2026",
+       "n": 10
+      }
+     ]
+    },
+    {
+     "text": "cake business pricing",
+     "volume": 0,
+     "competitionIndex": null,
+     "lowBidUsd": null,
+     "highBidUsd": null,
+     "monthly": [
+      {
+       "label": "Aug 2025",
+       "n": 0
+      },
+      {
+       "label": "Sep 2025",
+       "n": 0
+      },
+      {
+       "label": "Oct 2025",
+       "n": 0
+      },
+      {
+       "label": "Nov 2025",
+       "n": 0
+      },
+      {
+       "label": "Dec 2025",
+       "n": 0
+      },
+      {
+       "label": "Jan 2026",
+       "n": 0
+      },
+      {
+       "label": "Feb 2026",
+       "n": 0
+      },
+      {
+       "label": "Mar 2026",
+       "n": 0
+      },
+      {
+       "label": "Apr 2026",
+       "n": 0
+      },
+      {
+       "label": "May 2026",
+       "n": 0
+      },
+      {
+       "label": "Jun 2026",
+       "n": 0
+      },
+      {
+       "label": "Jul 2026",
+       "n": 0
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
