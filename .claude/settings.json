@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node tests/calculator.test.mjs)",
+      "Bash(node --check dist/server/index.js)",
+      "Bash(node -e ' *)",
+      "Bash(node /private/tmp/claude-501/-Users-Martin-1-WWW-cake/150d21f3-dac7-43d5-8288-1b910ba7c620/scratchpad/api.test.mjs)",
+      "Bash(vercel deploy *)",
+      "Bash(vercel ls *)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' https://cake-plglgitqh-stonek1s-projects.vercel.app/api/subscribe-result)",
+      "Bash(curl -s -w ' %{http_code}\\\\n' https://cake-plglgitqh-stonek1s-projects.vercel.app/api/subscribe-result -H 'content-type: application/json' -H 'origin: https://cake-plglgitqh-stonek1s-projects.vercel.app' --data-raw '{\"email\":\"x@example.com\",\"consent\":true,\"company\":\"bot\",\"currency\":\"USD\",\"inputs\":{}}')",
+      "Bash(curl -s -w ' %{http_code}\\\\n' https://cake-plglgitqh-stonek1s-projects.vercel.app/api/subscribe-result -H 'content-type: application/json' --data-raw '{\"email\":\"x@example.com\",\"consent\":false,\"company\":\"\",\"currency\":\"USD\",\"inputs\":{}}')",
+      "Bash(curl -s -w ' %{http_code}\\\\n' https://cake-plglgitqh-stonek1s-projects.vercel.app/api/subscribe-result -H 'content-type: application/json' -H 'origin: https://evil.example' --data-raw '{}')",
+      "Bash(curl -s -w ' %{http_code}\\\\n' https://cake-plglgitqh-stonek1s-projects.vercel.app/api/subscribe-result -H 'content-type: application/json' -H 'origin: https://cake-plglgitqh-stonek1s-projects.vercel.app' --data-raw '{\"email\":\"martin.zak@email.cz\",\"consent\":true,\"company\":\"\",\"currency\":\"USD\",\"inputs\":{\"ingredients\":18,\"hours\":3,\"rate\":15,\"extras\":6,\"price\":65,\"feePercent\":3,\"feeFixed\":0.3,\"margin\":25}}')",
+      "Bash(vercel inspect *)",
+      "Bash(grep -iA20 'builds\\\\|outputs\\\\|functions')"
+    ]
+  }
+}

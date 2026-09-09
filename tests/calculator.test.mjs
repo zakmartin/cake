@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {calculate} from '../dist/calculator.mjs';
+import {calculate} from '../site/calculator.mjs';
 const base={ingredients:18,hours:3,rate:15,extras:6,price:65,feePercent:3,feeFixed:.3,margin:25};
 const r=calculate(base);
 assert.equal(r.cost,69);assert.equal(r.fees,2.25);assert.equal(r.surplus,-6.25);assert.equal(r.target,96.25);assert.equal(r.floor,71.45);
