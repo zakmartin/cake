@@ -11,7 +11,7 @@ async function walk(dir){
   const files=[];
   for(const entry of entries){
     const full=join(dir,entry.name);
-    if(entry.isDirectory())files.push(...await walk(full));
+    if(entry.isDirectory()){if(entry.name!=='pins')files.push(...await walk(full));}
     else if(entry.name!=='workbook-preview.jpg')files.push(full);
   }
   return files;

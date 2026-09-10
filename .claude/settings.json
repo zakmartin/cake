@@ -53,7 +53,22 @@
       "Bash(node scripts/ads-keyword-import.mjs docs/kw/US.csv docs/kw/GB.csv docs/kw/CA.csv docs/kw/AU.csv)",
       "WebFetch(domain:help.pinterest.com)",
       "WebFetch(domain:community.pinterest.biz)",
-      "Bash(node --check site/app.mjs)"
+      "Bash(node --check site/app.mjs)",
+      "Bash(grep -o -iE '\\(title|description|alt text|popis|titulek|board|nástěnka\\)[^<]{0,200}' docs/pinterest-campaign.html)",
+      "Bash(grep -o -E '<\\(h1|h2|h3|p\\)[^>]*>[^<]{3,200}' docs/pins/pin-a.html)",
+      "Bash(grep -o -iE '\\(day|den|week|týden\\)[^<]{0,60}' docs/Cake-Quote-Kit-Pinterest-18/00-Gallery.html)",
+      "Bash(sed -i '' 's|//   node scripts/pinterest.mjs publish <queue.json> \\\\[--dry-run\\\\] \\\\[--limit N\\\\] \\\\[--id pin01\\\\]|//   node scripts/pinterest.mjs publish <queue.json> [--dry-run] [--limit N] [--id pin01] [--create-boards]|' scripts/pinterest.mjs)",
+      "Bash(node --check scripts/pinterest.mjs)",
+      "Bash(node scripts/pinterest.mjs me)",
+      "Bash(node scripts/pinterest.mjs publish docs/Cake-Quote-Kit-Pinterest-18/queue.json --dry-run)",
+      "Bash(node scripts/pinterest.mjs publish docs/Cake-Quote-Kit-Pinterest-18/queue.json --limit 1 --create-boards)",
+      "Bash(node scripts/pinterest.mjs boards)",
+      "Bash(node --check scripts/pinterest-auth.mjs)",
+      "Bash(node scripts/pinterest-auth.mjs)",
+      "Bash(echo \"exit $?\")",
+      "Bash(awk -F'=' '{v=$2; sub\\(/^ */,\"\",v\\); print $1\" = [\"substr\\(v,1,6\\)\"…] len=\"length\\(v\\)}' .env)",
+      "Bash(sed -i '' -E 's/[[:space:]]+#.*$//' .env)",
+      "Bash(awk -F'=' 'NF{v=$2; print $1\" len=\"length\\(v\\)}' .env)"
     ]
   }
 }
