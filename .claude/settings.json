@@ -52,7 +52,8 @@
       "Bash(cp '/Users/Martin_1/Downloads/Keyword Stats 2026-09-09 at 17_17_08.csv' docs/kw/AU.csv)",
       "Bash(node scripts/ads-keyword-import.mjs docs/kw/US.csv docs/kw/GB.csv docs/kw/CA.csv docs/kw/AU.csv)",
       "WebFetch(domain:help.pinterest.com)",
-      "WebFetch(domain:community.pinterest.biz)"
+      "WebFetch(domain:community.pinterest.biz)",
+      "Bash(node --check site/app.mjs)"
     ]
   }
 }

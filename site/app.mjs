@@ -154,7 +154,7 @@ $('preview-note').textContent='Private preview · Payhip checkout + inline email
 if(ready){
   $('preview-note').hidden=true;
   $('launch-status').hidden=true;
-  const links=[['Privacy',privacy],['Terms',terms],['Support','mailto:'+config.supportEmail]];
+  const links=[['Terms',terms],['Support','mailto:'+config.supportEmail]];
   links.forEach(([label,url])=>{
     const link=document.createElement('a');
     link.textContent=label;
