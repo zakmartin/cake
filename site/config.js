@@ -15,8 +15,8 @@ window.CAKE_CONFIG = Object.freeze({
   // An empty label disables that conversion; plain gtag events still fire so the account has data.
   googleAdsId: 'AW-1040350636',
   conversionLabels: Object.freeze({
-    purchase: '',        // fired on /thank-you.html after Payhip redirects a paid order there
-    lead: '',            // fired when the calculator result email is accepted by the server
-    checkout_click: ''   // optional secondary action: click on any "Buy" button that opens Payhip
+    purchase: 'p3ldCJ26w_gcEKz7ifAD',        // fired on /thank-you.html after Payhip redirects a paid order there
+    lead: 'xGPwCKC6w_gcEKz7ifAD',            // fired when the calculator result email is accepted by the server
+    checkout_click: 'kbmICKO6w_gcEKz7ifAD'   // optional secondary action: click on any "Buy" button that opens Payhip
   })
 });

@@ -41,15 +41,24 @@ Page views: Vercel Web Analytics (cookie-free). Google Ads: the Google tag `AW-1
 
 ### Google Ads conversion setup
 
-Conversion labels live in `site/config.js` → `conversionLabels`. An empty label disables that conversion, so nothing is counted until the owner completes these steps:
+Conversion labels live in `site/config.js` → `conversionLabels`. An empty label disables that conversion.
 
-1. In Google Ads open **Goals → Conversions → Summary → New conversion action → Website**, enter `www.cakequotekit.app` and choose **Add a conversion action manually**.
-2. Create **Purchase** — category *Purchase*, value *Use the same value for each conversion* = 6.90 USD (or *Use different values*; the page sends `value` and `currency`), count *Every*, attribution *Data-driven*. Set as primary action.
-3. Create **Lead** — category *Submit lead form*, no value (or a small fixed value), count *One*. Primary or secondary depending on bidding strategy.
-4. Optional: **Checkout click** — category *Begin checkout*, count *One*, mark as **Secondary** (observation only; a CTA click is not a sale).
-5. For each action open **Tag setup → Use Google tag manager / Install the tag yourself** and copy the label from `send_to: 'AW-1040350636/XXXXXXXX'`. Paste only the part after the slash into `conversionLabels.purchase`, `.lead`, `.checkout_click`.
-6. In Payhip open **Account → Settings → Advanced Settings → Checkout Settings**, tick *Redirect customers to a particular webpage when they successfully complete the checkout*, apply it to product `N5CET` and enter `https://www.cakequotekit.app/thank-you.html`. Payhip then delivers the file by email instead of the immediate download screen; the thank-you page tells the buyer to check their inbox. Payhip does not append an order id to the redirect, so the purchase conversion has no `transaction_id` and is de-duplicated per browser session only.
-7. Deploy, then verify: run **Tag Assistant** on the landing page, click a Buy button (expect `begin_checkout` plus the checkout_click conversion), send a calculator result to a test address (expect `generate_lead` plus the lead conversion), and complete one real test purchase. The purchase must appear in Google Ads under the Purchase action within a few hours; refund the test order in Payhip afterwards.
+The conversion actions were created through the Google Ads API on 15 September 2026 by `scripts/ads-conversions.mjs` in Google Ads customer 491-053-2870 (the account that also runs pojistitonline.cz; the shared Google tag is `AW-1040350636`):
+
+| Action | Category | Counting | Goal | Conversion action id |
+|---|---|---|---|---|
+| Cake Quote Kit – Purchase | Purchase, value 6.90 USD default, page value preferred | Every | Primary | 7768956189 |
+| Cake Quote Kit – Lead (result email) | Submit lead form | One | Secondary | 7768956192 |
+| Cake Quote Kit – Checkout click | Begin checkout | One | Secondary | 7768956195 |
+
+The script is idempotent: `node scripts/ads-conversions.mjs` lists the account's actions and validates, `--apply` creates whatever is missing and writes the labels into `site/config.js`. Credentials are read from `../pojistitonline.cz/.env` (override with `ADS_ENV_FILE`); `scripts/google-ads.mjs` is a dependency-free port of that project's `googleAdsAuth.ts`. Never copy the `.env` into this repo.
+
+Goal note: campaign "Website traffic- CAKE" (24230575146) uses customer-level goals, and the account's *Purchase* goal is not biddable (pojistitonline deliberately keeps only "Rixo lead" biddable). Conversions are still reported per action, but before switching the CAKE campaign to Maximize conversions, give it campaign-level goals with a custom goal containing only the Cake actions, so the insurance campaigns stay untouched.
+
+Remaining manual steps:
+
+1. In Payhip open **Account → Settings → Advanced Settings → Checkout Settings**, tick *Redirect customers to a particular webpage when they successfully complete the checkout*, apply it to product `N5CET` and enter `https://www.cakequotekit.app/thank-you.html`. Payhip then delivers the file by email instead of the immediate download screen; the thank-you page tells the buyer to check their inbox. Payhip does not append an order id to the redirect, so the purchase conversion has no `transaction_id` and is de-duplicated per browser session only.
+2. Deploy, then verify: run **Tag Assistant** on the landing page, click a Buy button (expect `begin_checkout` plus the checkout_click conversion), send a calculator result to a test address (expect `generate_lead` plus the lead conversion), and complete one real test purchase. The purchase must appear in Google Ads under the Purchase action within a few hours; refund the test order in Payhip afterwards.
 
 Fallback if the Payhip redirect is unacceptable: import Payhip sales as offline conversions (Payhip → Zapier → Google Ads "Send offline conversion"), which needs the GCLID stored at click time and passed to Payhip; that is not implemented.
 

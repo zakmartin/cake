@@ -70,7 +70,10 @@
       "Bash(sed -i '' -E 's/[[:space:]]+#.*$//' .env)",
       "Bash(awk -F'=' 'NF{v=$2; print $1\" len=\"length\\(v\\)}' .env)",
       "Bash(grep -n \"gtag\\\\|googletagmanager\\\\|G-[A-Z0-9]\\\\{6,\\\\}\" site/index.html)",
-      "WebFetch(domain:help.payhip.com)"
+      "WebFetch(domain:help.payhip.com)",
+      "Bash(cd /Users/Martin_1/WWW/pojistitonline.cz && ls -a; ls -a .claude 2>/dev/null; cat .mcp.json 2>/dev/null; cat .claude/settings.json .claude/settings.local.json 2>/dev/null | head -60; grep -rIl --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.nuxt --exclude-dir=.output -i \"google-ads\\\\|googleads\\\\|developer_token\\\\|developer-token\\\\|GoogleAdsService\\\\|adwords\\\\|conversion_action\" . 2>/dev/null | head -30; ls server public 2>/dev/null | head -40)",
+      "Bash(cd /Users/Martin_1/WWW/pojistitonline.cz && cat server/utils/googleAdsAuth.ts; echo ----; cat scripts/ads-cake.mts; echo ----; cat scripts/ads-auth.mts | head -80; echo ----; grep -o \"^[A-Z_]*=\" .env .env.local | grep -i \"google\\\\|ads\"; echo ----; grep -n \"google-ads\\\\|dotenv\\\\|tsx\" package.json)",
+      "Bash(cd /Users/Martin_1/WWW/pojistitonline.cz && sed -n 105,175p scripts/ads-tune.mts; echo ----; sed -n 285,330p scripts/ads-audit.mts)"
     ]
   }
 }
