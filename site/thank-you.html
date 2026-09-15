@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Thank you | Cake Quote Kit</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>body{max-width:640px;margin:60px auto;padding:0 24px;font:16px/1.7 Arial,sans-serif;color:#173e35}h1{font:44px/1.1 Georgia,serif;letter-spacing:-1px}a{color:inherit}.label{letter-spacing:2px;font-size:12px}.note{background:#eef2e5;padding:18px}.muted{font-size:13px;color:#586b5b}.button{display:inline-block;background:#173e35;color:#fff;text-decoration:none;border-radius:5px;padding:12px 20px;margin-top:8px}</style>
+<script src="/config.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-1040350636"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-1040350636');
+  (function(){
+    // Purchase conversion. Payhip redirects paid customers here (Account → Settings → Advanced → Checkout redirect).
+    // Fires once per browser session so a reload does not double-count. No personal data is sent.
+    var c=window.CAKE_CONFIG||{};
+    var label=c.conversionLabels&&c.conversionLabels.purchase;
+    var params=new URLSearchParams(location.search);
+    var txn=(params.get('order')||params.get('transaction_id')||'').replace(/[^\w-]/g,'').slice(0,64);
+    var key='cq_purchase_'+(txn||'session');
+    var seen=false;
+    try{seen=sessionStorage.getItem(key)==='1';sessionStorage.setItem(key,'1');}catch(e){}
+    if(seen)return;
+    var value={value:c.priceValue||6.9,currency:c.priceCurrency||'USD'};
+    if(txn)value.transaction_id=txn;
+    gtag('event','purchase',Object.assign({items:[{item_id:c.productId||'N5CET',item_name:c.productName||'Cake Quote Kit',price:c.priceValue||6.9,quantity:1}]},value));
+    if(label)gtag('event','conversion',Object.assign({send_to:(c.googleAdsId||'AW-1040350636')+'/'+label},value));
+  })();
+</script>
+<script defer src="/_vercel/insights/script.js"></script></head><body>
+<p class="label">CAKE QUOTE KIT · ORDER COMPLETE</p>
+<h1>Thank you for<br>your order.</h1>
+<p>Your payment went through. <strong>Payhip is emailing your download link now</strong> — open the email from Payhip and download the Excel workbook and quick-start guide from there.</p>
+<p class="note">Nothing in your inbox after a few minutes? Check your spam folder, then search for “Payhip”. You can also open <a href="https://payhip.com/library" rel="noopener">your Payhip library</a> with the email you used at checkout.</p>
+<p><a class="button" href="/">← Back to Cake Quote Kit</a></p>
+<p class="muted">Desktop Microsoft Excel is required. Questions about the file? Reply to the Payhip receipt email.</p>
+</body></html>

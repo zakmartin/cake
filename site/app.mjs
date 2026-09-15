@@ -1,4 +1,7 @@
 import {calculate} from './calculator.mjs';
+import './tracking.mjs';
+
+const action=name=>window.dispatchEvent(new CustomEvent('cake:action',{detail:{action:name}}));
 
 const ids=['ingredients','hours','rate','extras','price','feePercent','feeFixed','margin'];
 const $=id=>document.getElementById(id);
@@ -57,6 +60,7 @@ form.addEventListener('submit',e=>{
     $('result').hidden=true;
     $('lead-gate').hidden=false;
     $('lead-gate').scrollIntoView({behavior:'smooth',block:'nearest'});
+    action('calculate');
   }catch(error){
     latest=null;
     $('lead-gate').hidden=true;
@@ -107,6 +111,7 @@ resultEmailForm.addEventListener('submit',async e=>{
     $('result').hidden=false;
     $('result').scrollIntoView({behavior:'smooth',block:'nearest'});
     button.firstChild.textContent='Result sent ';
+    action('lead_sent');
   }catch(error){
     message.className='gate-message error-message';
     message.textContent=error.message;

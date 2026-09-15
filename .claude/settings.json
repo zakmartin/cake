@@ -68,7 +68,9 @@
       "Bash(echo \"exit $?\")",
       "Bash(awk -F'=' '{v=$2; sub\\(/^ */,\"\",v\\); print $1\" = [\"substr\\(v,1,6\\)\"…] len=\"length\\(v\\)}' .env)",
       "Bash(sed -i '' -E 's/[[:space:]]+#.*$//' .env)",
-      "Bash(awk -F'=' 'NF{v=$2; print $1\" len=\"length\\(v\\)}' .env)"
+      "Bash(awk -F'=' 'NF{v=$2; print $1\" len=\"length\\(v\\)}' .env)",
+      "Bash(grep -n \"gtag\\\\|googletagmanager\\\\|G-[A-Z0-9]\\\\{6,\\\\}\" site/index.html)",
+      "WebFetch(domain:help.payhip.com)"
     ]
   }
 }

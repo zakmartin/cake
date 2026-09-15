@@ -37,7 +37,23 @@ Remove the `noindex, nofollow` meta from the landing page only as part of the in
 
 ## Analytics and attribution
 
-There is no analytics provider in this version. `cake:action` browser events expose only action names (checkout-link, signup-link, download-result, checklist_open). They are local events and are not persisted. Actual calculator-use and page-view tracking must be added with a selected analytics provider and appropriate consent behaviour.
+Page views: Vercel Web Analytics (cookie-free). Google Ads: the Google tag `AW-1040350636` is loaded on `index.html` and `thank-you.html`. `site/tracking.mjs` listens to the local `cake:action` events and turns them into gtag events (`begin_checkout`, `calculate_price`, `generate_lead`, `view_checklist`, `download_result`) and, when a label is configured, into Google Ads conversions. Only action names and the public product price are sent; never emails or calculator inputs.
+
+### Google Ads conversion setup
+
+Conversion labels live in `site/config.js` → `conversionLabels`. An empty label disables that conversion, so nothing is counted until the owner completes these steps:
+
+1. In Google Ads open **Goals → Conversions → Summary → New conversion action → Website**, enter `www.cakequotekit.app` and choose **Add a conversion action manually**.
+2. Create **Purchase** — category *Purchase*, value *Use the same value for each conversion* = 6.90 USD (or *Use different values*; the page sends `value` and `currency`), count *Every*, attribution *Data-driven*. Set as primary action.
+3. Create **Lead** — category *Submit lead form*, no value (or a small fixed value), count *One*. Primary or secondary depending on bidding strategy.
+4. Optional: **Checkout click** — category *Begin checkout*, count *One*, mark as **Secondary** (observation only; a CTA click is not a sale).
+5. For each action open **Tag setup → Use Google tag manager / Install the tag yourself** and copy the label from `send_to: 'AW-1040350636/XXXXXXXX'`. Paste only the part after the slash into `conversionLabels.purchase`, `.lead`, `.checkout_click`.
+6. In Payhip open **Account → Settings → Advanced Settings → Checkout Settings**, tick *Redirect customers to a particular webpage when they successfully complete the checkout*, apply it to product `N5CET` and enter `https://www.cakequotekit.app/thank-you.html`. Payhip then delivers the file by email instead of the immediate download screen; the thank-you page tells the buyer to check their inbox. Payhip does not append an order id to the redirect, so the purchase conversion has no `transaction_id` and is de-duplicated per browser session only.
+7. Deploy, then verify: run **Tag Assistant** on the landing page, click a Buy button (expect `begin_checkout` plus the checkout_click conversion), send a calculator result to a test address (expect `generate_lead` plus the lead conversion), and complete one real test purchase. The purchase must appear in Google Ads under the Purchase action within a few hours; refund the test order in Payhip afterwards.
+
+Fallback if the Payhip redirect is unacceptable: import Payhip sales as offline conversions (Payhip → Zapier → Google Ads "Send offline conversion"), which needs the GCLID stored at click time and passed to Payhip; that is not implemented.
+
+Consent: the tag currently loads without a consent banner. Before EU traffic is bought, add a consent management platform with Google Consent Mode v2, or restrict campaigns to regions where consent is not required. The privacy policy already describes Google Ads measurement.
 
 Do not transmit numeric calculator inputs or emails in analytics. Add source tags to published links. Verify how campaign attribution crosses the checkout and signup domains. A paid-order conversion must come from a verified order, not a CTA click. Before advertising, test one complete path from tagged landing visit to paid-order reporting. If provider attribution is insufficient, use campaign-specific checkout offers/codes or implement server-side attribution only after choosing the provider.
 
